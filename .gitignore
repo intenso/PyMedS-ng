@@ -1,0 +1,9 @@
+# Dirt from editors
+*~
+*.swp
+
+#python specific
+*.pyc
+
+#temp dir
+/media
