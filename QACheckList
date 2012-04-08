@@ -1,0 +1,27 @@
+General Functionality
+error w/o media dir	x
+
+			PS3	DSM-520	Cidero	Intel
+Discovered		x	x	x	
+remains after 30m				
+FSStorage		x	x	x	
+	zip		x	x	x	
+	tar		x	x	x	
+	rar		x	2	x	
+mpegtsmod		x	x	3	
+shoutcast		4	1	3	
+dvd						
+pyvr			x	x	x	
+
+1 - Possible error in errRequest, changed ign to failure, hard to reproduce.
+    Need to handle other NotImplemented err backs.
+2 - hangs when opening large files.  Need to switch to threads and a deferred.
+3 - No render to test video
+4 - PS3 cannot stream audio.
+
+Did not have access to a Windows box for testing the Intel tools.
+Did not have an ISO handy for testing the dvd module.  Anyways the DVD module
+  is incomplete and would have had failures.
+I did not have time to test the disappearing media server, but am possitive
+  I fixed it w/ changes to rebroadcast my announcements before the previous
+  one timed out.

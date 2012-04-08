@@ -1,0 +1,169 @@
+This code is based upon code by Tim Potter.
+
+It is licensed under the MIT license at:
+http://opensource.org/licenses/mit-license.php
+
+I got a D-Link DSM-520 but I needed a UPnP Media Server to stream data
+with.  I tried one, but it had issues running under FreeBSD's Linux
+emulation.  Since I know Python, I went looking for a python server
+and found this code.  The code was a good framework, so I expanded upon
+it.
+
+Tested basic functionality with the following devices and/or programs:
+	Cidero UPnP A/V Controller
+	Intel's Media Control Point and Media Renderer
+	D-Link DSM-520
+	Sony PlayStation 3
+
+The Intel tools are good for testing (though Windows only) and are
+available at:
+http://www.intel.com/cd/ids/developer/asmo-na/eng/downloads/upnp/index.htm
+
+Either make a directory media and put the files there, or make a symlink
+named media to your media files.  Either will work.  Run it as:
+	./pymediaserv <localip> [ <http server port> ]
+
+The following packages are required to run the media server:
+	* Twisted (only core and web necessary, tested w/ 2.1.0 and
+	    Web 0.5.0)
+	* ElementTree
+
+Optional software packages:
+	* rarfile - http://grue.l-t.ee/~marko/src/rarfile/
+
+NOTE: SOAPpy is no longer required as I have included soap_lite from the
+Coherence project: https://coherence.beebits.net/ .
+
+Thanks to Coherence for soap_lite that solved the issues w/ PS3 not seeing
+the media server.  The PS3 with the latest firmware (2.50 and later) now
+plays a lot more media than before.  It will stream ATSC streams (OTA HD)
+w/ AC3 (5.1) audio, but the stream has to have PAT followed by PMT to see
+the stream as valid.  If it is PAT, PAT, PMT or PMT, PAT, the PS3 will
+think the stream is corrupted.  Also, if the stream starts out w/ 2 channel
+AC3 audio, and later switches to 5.1, you will be stuck w/ 2 channel audio.
+Support for WMV and Xvid in AVI seems to work well.
+
+For more information, check out the software page at:
+http://resnet.uoregon.edu/~gurney_j/jmpc/pymeds.html
+
+Good Luck!
+
+John-Mark Gurney <jmg@funkthat.com>
+
+Ideas for future improvements:
+	I have received a few ECONNABORTED errors at times.  The patch
+	  twisted.internet.tcp.py.patch catches this error, and handles
+	  it properly.
+	Add res to the DVDTitle container to play the title, and for other
+	  containers that it makes sense for.
+	Make the directory persistant so that the server's UUID does not
+	  change each run and we don't have to recreate the objects.  This
+	  will mean we can add additional meta data.
+	Figure out how to rearchitect ContentDirectoryControl so I don't
+	  need to use doRecall.  This may be helped by not necessarily
+	  figuring out all the children of a member just to fetch it.
+	  childCount isn't a required attribute.
+	Autodetect IP address.
+	Support sorting by other attributes.
+	Finish support for playing DVD's.
+	Support custom icon like MediaTomb does.
+	Support a generic layer for transcoding, and supporting detection
+	  of types for devices to only present the optimal type.  Less of
+	  an issue now the PS3 video support has been expanded.
+
+v0.5:
+	Support multiple SSDP servers on the same box.
+	Fix SSDP to set the max-age to 7 days.  We now retransmit replies
+	  and reannounce ourselves randomly before our original announcement
+	  expires.  This fixes the Server Disconnects I was seeing on the
+	  DSM-520!
+	Change how the mpegtsmod handles multi-stream TS's.  Instead of
+	  calling tssel.py, we fixup the PAT to only contain the channel
+	  we want.  This does mean we send more data than we need, but
+	  means that we can make the stream seekable.
+	Now works w/ PS3.  The PS3 as of 2.50 supports AC3 audio in
+	  MPEG-TS streams.
+	Add rar file support.  This is optional, and if rarfile is not
+	  installed, things will work, just not be able to look into rar
+	  files.
+	Fix problem when adding multiple res with same mime-type and adding
+	  transcoding mime-types to all files, not just video type files.
+	Speed up detection of large zip files.  Previously we would
+	  instantiate the ZipFile class, which was expensive.  Use the
+	  is_zipfile function instead.
+	Fix handling of Containers.  Previously we would rescan the root
+	  dir many times due to calling doUpdate when we just wanted to
+	  update the SystemID.  There was also a bug where we would do a
+	  lot more work than necessary.  This significantly speeds up
+	  large directories.
+	Improve mpegtsmod so that it doesn't always scan the first 2 megs
+	  of the file.  Do a quick check of the first few KB first.
+	Create a new module that fetchs an XML files, parses it, and
+	  presents the media in it.  This is to integrate my Python PVR
+	  so that I can browse the shows I have recorded.
+	Fix transcoding of MPEG-2, use mp2 audio instead of mp3.
+	Sync up the programs in mpegts.
+	Skip directories in ZipStorage for zip and rar archives.
+	For ShoutCast streams, override the User-Agent, apparently some/most
+	  stations now block the default one.
+
+v0.3:
+	Include some patches for twisted in the distro, in the directory
+	  patches.
+	Look inside MPEG-TS for TVCT and/or PAT and if there is more
+	  than one program, make it a container w/ the different
+	  programs.  Includes the program and MPEG-TS python module in
+	  the mpegts directory.
+	Add support for multiple res elements and automatic transcoding
+	  to either avi/xvid or mpeg2 using ffmpeg.  Update the path to
+	  ffmpeg in the FSStorage.py file.
+	Look inside DVDs and handle titles and chapters.  We can not yet
+	  play the streams.  This requires pydvdread which is included
+	  in the directory pydvdread.  It depends upon libdvdread and
+	  requires swig and a C compiler to build.
+	Empty dirs w/ no content would disappear, and cause a short
+	  response to BrowseDirectChildren.  The DSM-520 askes for one
+	  more than displayed, and uses the existant of the extra item
+	  as indication if there are more items.
+	Understands zip and tar files now.  It will dynamicly extract
+	  items, so you can zip up your jpegs and view them w/o having
+	  to unzip them.  tar files can be gzip'd or bzip2'd.
+	Each item now has an optinal content attribute, which if set is
+	  installed in the web server.
+	Don't send 'foobar' when exiting, stops a traceback on another
+	  instance of PyMedS.
+	Properly fix deleting items.  If you had another item with zero
+	  children which was before the deleted item, it would get removed
+	  from the list instead of the deleted item.
+
+v0.2:
+	No longer require restarting to see new files/dirs in hierarchy.
+	Add FSStorage which is a set of classes for handling filesystem
+	  objects, also handles updateID's.
+	Make the root container customizable, so you don't end up with
+	  a single entry (like media) at the root.  This lets us use a
+	  FSDirectory as the root and get auto-enumeration
+	Support returning custom error codes, so that we can return 701
+	  No such object among others.
+	Support deleting items, so we can remove them when no longer on
+	  the file system.
+	Make Containers a subclass of list.  This lets use populate
+	  childCount properly.
+	Add required attributes to Storage* classes.
+	Support custom container classes to addContainer.
+	Add a few more custom mime-types.
+	Sort listings by name for now.
+
+v0.1:
+	Don't bind the UDP socket to the multicast address, so replies
+	  go out on our local IP.
+	Send out notify requests when we register the services with SSDP.
+	Send out byebye notifications when we are shutting down.
+	Randomize the UUID for the server (this should be part of the
+	  saved state).
+	Randomize the port, or optionally set it on the command line.
+	Teach ContentDirectory.py the basics on handling Containers and
+	  generic browse support.  You can addItem and addContainer, which
+	  each return either respective ObjectID.
+	We already support partial chunking of responses, but we don't yet
+	  support filtering or sorting.

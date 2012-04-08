@@ -1,0 +1,14 @@
+<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp">
+  <container id="0\Photo\All%20Photos\" parentID="0\Photo\" restricted="0" searchable="0" childCount="1">
+    <dc:title>All Photos</dc:title>
+    <upnp:class>object.container.album.photoAlbum</upnp:class>
+    <dc:creator></dc:creator>
+    <upnp:icon>http://16.176.65.48:5643/web/C:\temp\foo.jpg.thumb</upnp:icon>
+  </container>
+  <container id="0\Photo\Folders\" parentID="0\Photo\" restricted="0" searchable="0" childCount="1">
+    <dc:title>Folders</dc:title>
+    <upnp:class>object.container.album.photoAlbum</upnp:class>
+    <dc:creator></dc:creator>
+    <upnp:icon>http://16.176.65.48:5643/web/C:\temp\foo.jpg.thumb</upnp:icon>
+  </container>
+</DIDL-Lite>

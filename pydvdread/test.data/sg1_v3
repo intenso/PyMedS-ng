@@ -1,0 +1,235 @@
+<Swig Object of type 'dvd_reader_t *' at 0x614c80>
+volid: u'SG1_V3' volsetid: '\x082a55bf68\x00\x00\x00\x00\x00\x00\x00\x00SG1_V3\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x17' cache: 1 discid: 'y\xb93\xea\xb9\x85bxS\x94\x98\xd1\x11\x88.2'
+<pydvdread.DVDFile instance at 0x377f08>
+0
+'DVDVIDEO-VMG\x00\x00\x05d\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x11\x00\xfe\x00\x00\x00\x01\x00\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03'
+14336
+vmg
+ifo: <pydvdread.IFO instance at 0x377c38>
+ident: 'DVDVIDEO-VMG'
+# vts: 3
+provider: ''
+nr_of_srpts: 7
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 5
+parental id: 0
+title set #: 1
+vts ttn: 1
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 5
+parental id: 0
+title set #: 1
+vts ttn: 2
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 5
+parental id: 0
+title set #: 1
+vts ttn: 3
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 5
+parental id: 0
+title set #: 1
+vts ttn: 4
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 5
+parental id: 0
+title set #: 1
+vts ttn: 5
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 5
+parental id: 0
+title set #: 2
+vts ttn: 1
+<pydvdread.cdvdread.title_info_t; proxy of <Swig Object of type 'title_info_t *' at 0x60c830> >
+playbacktype: 0 0 1 0 1 0 0
+# angles: 1
+# ptts: 1
+parental id: 0
+title set #: 3
+vts ttn: 1
+vts
+ifo: <pydvdread.IFO instance at 0x387c38>
+['__del__', '__doc__', '__init__', '__module__', 'dvd', 'first_play_pgc', 'ifodata', 'menu_c_adt', 'menu_vobu_admap', 'pgci_ut', 'ptl_mait', 'tt_srpt', 'txtdt_mgi', 'vmgi_mat', 'vts_atrt', 'vts_c_adt', 'vts_pgcit', 'vts_ptt_srpt', 'vts_tmapt', 'vts_vobu_admap', 'vtsi_mat']
+# of srpts: 5
+title #: 0
+# of ptts: 5
+pgcn: 1
+pgn: 1
+pgcn: 1
+pgn: 2
+pgcn: 1
+pgn: 3
+pgcn: 1
+pgn: 4
+pgcn: 1
+pgn: 5
+title #: 1
+# of ptts: 5
+pgcn: 2
+pgn: 1
+pgcn: 2
+pgn: 2
+pgcn: 2
+pgn: 3
+pgcn: 2
+pgn: 4
+pgcn: 2
+pgn: 5
+title #: 2
+# of ptts: 5
+pgcn: 3
+pgn: 1
+pgcn: 3
+pgn: 2
+pgcn: 3
+pgn: 3
+pgcn: 3
+pgn: 4
+pgcn: 3
+pgn: 5
+title #: 3
+# of ptts: 5
+pgcn: 4
+pgn: 1
+pgcn: 4
+pgn: 2
+pgcn: 4
+pgn: 3
+pgcn: 4
+pgn: 4
+pgcn: 4
+pgn: 5
+title #: 4
+# of ptts: 5
+pgcn: 5
+pgn: 1
+pgcn: 5
+pgn: 2
+pgcn: 5
+pgn: 3
+pgcn: 5
+pgn: 4
+pgcn: 5
+pgn: 5
+pgc: 5
+nr_of_progs: 5
+nr_of_cells: 5
+time: 0:44:10.00
+program_map[0]: 1
+program_map[1]: 2
+program_map[2]: 3
+program_map[3]: 4
+program_map[4]: 5
+cell_playback[0]: 0-199844 0:11:48.18
+cell_playback[1]: 199845-327632 0:06:57.08
+cell_playback[2]: 327633-444493 0:07:21.19
+cell_playback[3]: 444494-577181 0:07:54.25
+cell_playback[4]: 577182-734711 0:10:07.20
+nr_of_progs: 5
+nr_of_cells: 5
+time: 0:44:10.00
+program_map[0]: 1
+program_map[1]: 2
+program_map[2]: 3
+program_map[3]: 4
+program_map[4]: 5
+cell_playback[0]: 734712-936408 0:12:20.08
+cell_playback[1]: 936409-1064831 0:08:23.20
+cell_playback[2]: 1064832-1215444 0:09:32.23
+cell_playback[3]: 1215445-1332766 0:06:33.10
+cell_playback[4]: 1332767-1443075 0:07:19.29
+nr_of_progs: 5
+nr_of_cells: 5
+time: 0:44:10.00
+program_map[0]: 1
+program_map[1]: 2
+program_map[2]: 3
+program_map[3]: 4
+program_map[4]: 5
+cell_playback[0]: 1443076-1661816 0:12:44.27
+cell_playback[1]: 1661817-1768975 0:06:17.19
+cell_playback[2]: 1768976-1937529 0:09:58.04
+cell_playback[3]: 1937530-2090623 0:08:52.13
+cell_playback[4]: 2090624-2177682 0:06:16.27
+nr_of_progs: 5
+nr_of_cells: 5
+time: 0:44:10.00
+program_map[0]: 1
+program_map[1]: 2
+program_map[2]: 3
+program_map[3]: 4
+program_map[4]: 5
+cell_playback[0]: 2177683-2267107 0:05:41.20
+cell_playback[1]: 2267108-2432141 0:10:18.17
+cell_playback[2]: 2432142-2682901 0:13:44.00
+cell_playback[3]: 2682902-2873976 0:10:16.21
+cell_playback[4]: 2873977-2911807 0:04:09.02
+nr_of_progs: 5
+nr_of_cells: 5
+time: 0:44:10.00
+program_map[0]: 1
+program_map[1]: 2
+program_map[2]: 3
+program_map[3]: 4
+program_map[4]: 5
+cell_playback[0]: 2911808-3088276 0:10:21.10
+cell_playback[1]: 3088277-3229786 0:08:30.26
+cell_playback[2]: 3229787-3393508 0:09:15.13
+cell_playback[3]: 3393509-3558306 0:10:01.01
+cell_playback[4]: 3558307-3646643 0:06:01.10
+vts
+ifo: <pydvdread.IFO instance at 0x377c38>
+['__del__', '__doc__', '__init__', '__module__', 'dvd', 'first_play_pgc', 'ifodata', 'menu_c_adt', 'menu_vobu_admap', 'pgci_ut', 'ptl_mait', 'tt_srpt', 'txtdt_mgi', 'vmgi_mat', 'vts_atrt', 'vts_c_adt', 'vts_pgcit', 'vts_ptt_srpt', 'vts_tmapt', 'vts_vobu_admap', 'vtsi_mat']
+# of srpts: 1
+title #: 0
+# of ptts: 5
+pgcn: 1
+pgn: 1
+pgcn: 1
+pgn: 2
+pgcn: 1
+pgn: 3
+pgcn: 1
+pgn: 4
+pgcn: 1
+pgn: 5
+pgc: 1
+nr_of_progs: 5
+nr_of_cells: 5
+time: 0:00:30.16
+program_map[0]: 1
+program_map[1]: 2
+program_map[2]: 3
+program_map[3]: 4
+program_map[4]: 5
+cell_playback[0]: 0-6449 0:00:11.28
+cell_playback[1]: 6450-6524 0:00:05.00
+cell_playback[2]: 6525-6603 0:00:07.00
+cell_playback[3]: 6604-7475 0:00:06.03
+cell_playback[4]: 7476-7479 0:00:00.15
+vts
+ifo: <pydvdread.IFO instance at 0x387c38>
+['__del__', '__doc__', '__init__', '__module__', 'dvd', 'first_play_pgc', 'ifodata', 'menu_c_adt', 'menu_vobu_admap', 'pgci_ut', 'ptl_mait', 'tt_srpt', 'txtdt_mgi', 'vmgi_mat', 'vts_atrt', 'vts_c_adt', 'vts_pgcit', 'vts_ptt_srpt', 'vts_tmapt', 'vts_vobu_admap', 'vtsi_mat']
+# of srpts: 1
+title #: 0
+# of ptts: 1
+pgcn: 1
+pgn: 1
+pgc: 1
+nr_of_progs: 1
+nr_of_cells: 1
+time: 0:06:20.28
+program_map[0]: 1
+cell_playback[0]: 23-96414 0:06:20.28

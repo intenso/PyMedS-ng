@@ -1,0 +1,11 @@
+<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp">
+  <item id="0\Music\Genres\Others\chimes.wav" parentID="0\Music\Genres\Others\" restricted="0">
+    <dc:title>chimes.wav</dc:title>
+    <upnp:class>object.item.audioItem.musicTrack</upnp:class>
+    <dc:creator></dc:creator>
+    <upnp:genre>Others</upnp:genre>
+    <upnp:artist>Others</upnp:artist>
+    <upnp:album>Others</upnp:album>
+    <res protocolInfo="http-get:*:audio/x-wav:*" bitrate="176" size="15920">http://16.176.65.48:5643/web/C:\temp\Resource%20Kit\kixtart\chimes.wav</res>
+  </item>
+</DIDL-Lite>

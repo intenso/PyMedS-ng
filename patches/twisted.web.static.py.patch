@@ -1,0 +1,98 @@
+--- TwistedWeb-0.5.0/twisted/web/static.py	Sun Jan  2 15:33:41 2005
++++ /usr/local/lib/python2.4/site-packages/twisted/web/static.py	Fri Feb 17 23:55:04 2006
+@@ -306,7 +306,7 @@
+         #for content-length
+         fsize = size = self.getFileSize()
+ 
+-#         request.setHeader('accept-ranges','bytes')
++        request.setHeader('accept-ranges','bytes')
+ 
+         if self.type:
+             request.setHeader('content-type', self.type)
+@@ -325,39 +325,59 @@
+         if request.setLastModified(self.getmtime()) is http.CACHED:
+             return ''
+ 
++        trans = True
+ # Commented out because it's totally broken. --jknight 11/29/04
+-#         try:
+-#             range = request.getHeader('range')
+-# 
+-#             if range is not None:
+-#                 # This is a request for partial data...
+-#                 bytesrange = string.split(range, '=')
+-#                 assert bytesrange[0] == 'bytes',\
+-#                        "Syntactically invalid http range header!"
+-#                 start, end = string.split(bytesrange[1],'-')
+-#                 if start:
+-#                     f.seek(int(start))
+-#                 if end:
+-#                     end = int(end)
+-#                     size = end
+-#                 else:
+-#                     end = size
+-#                 request.setResponseCode(http.PARTIAL_CONTENT)
+-#                 request.setHeader('content-range',"bytes %s-%s/%s " % (
+-#                     str(start), str(end), str(size)))
+-#                 #content-length should be the actual size of the stuff we're
+-#                 #sending, not the full size of the on-server entity.
+-#                 fsize = end - int(start)
+-# 
+-#             request.setHeader('content-length', str(fsize))
+-#         except:
+-#             traceback.print_exc(file=log.logfile)
++# XXX - fixed? jmg 2/17/06
++        try:
++            range = request.getHeader('range')
++
++            tsize = size
++            if range is not None:
++                # This is a request for partial data...
++                bytesrange = string.split(range, '=')
++                assert bytesrange[0] == 'bytes',\
++                       "Syntactically invalid http range header!"
++                start, end = string.split(bytesrange[1],'-', 1)
++                if start:
++                    f.seek(int(start))
++                    if end:
++                        end = int(end)
++                    else:
++                        end = size - 1
++                else:
++                    lastbytes = int(end)
++                    if size < lastbytes:
++                        lastbytes = size
++                    start = size - lastbytes
++                    f.seek(start)
++                    fsize = lastbytes
++                    end = size - 1
++                size = end + 1
++                fsize = end - int(start) + 1
++                # start is the byte offset to begin, and end is the byte offset
++                # to end..  fsize is size to send, tsize is the real size of
++                # the file, and size is the byte position to stop sending.
++
++                if fsize <= 0:
++                    request.setResponseCode(http.REQUESTED_RANGE_NOT_SATISFIABLE)
++                    fsize = tsize
++                    trans = False
++                else:
++                    request.setResponseCode(http.PARTIAL_CONTENT)
++                    request.setHeader('content-range',"bytes %s-%s/%s " % (
++                        str(start), str(end), str(tsize)))
++        except:
++            traceback.print_exc(file=log.logfile)
+ 
+         request.setHeader('content-length', str(fsize))
+-        if request.method == 'HEAD':
++        if request.method == 'HEAD' or trans == False:
++            # pretend we're a HEAD request, so content-length
++            # won't be overwritten.
++            request.method = 'HEAD'
+             return ''
+ 
+         # return data
++        # size is the byte position to stop sending, not how many bytes to send
+         FileTransfer(f, size, request)
+         # and make sure the connection doesn't get closed
+         return server.NOT_DONE_YET

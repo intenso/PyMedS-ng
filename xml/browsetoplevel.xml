@@ -1,0 +1,22 @@
+<DIDL-Lite xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp">
+  <container id="0\Movie\" parentID="0\" restricted="0" searchable="0" childCount="0">
+    <dc:title>Movie</dc:title>
+    <upnp:class>object.container</upnp:class>
+    <dc:creator></dc:creator>
+  </container>
+  <container id="0\Music\" parentID="0\" restricted="0" searchable="0" childCount="0">
+    <dc:title>Music</dc:title>
+    <upnp:class>object.container</upnp:class>
+    <dc:creator></dc:creator>
+  </container>
+  <container id="0\Photo\" parentID="0\" restricted="0" searchable="0" childCount="0">
+    <dc:title>Photo</dc:title>
+    <upnp:class>object.container</upnp:class>
+    <dc:creator></dc:creator>
+  </container>
+  <container id="0\OnlineMedia\" parentID="0\" restricted="0" searchable="0" childCount="0">
+    <dc:title>OnlineMedia</dc:title>
+    <upnp:class>object.container</upnp:class>
+    <dc:creator></dc:creator>
+  </container>
+</DIDL-Lite>

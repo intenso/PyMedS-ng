@@ -1,0 +1,18 @@
+#!/usr/bin/python
+
+# Copyright 2005, Tim Potter <tpot@samba.org>
+
+# Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php
+
+"""Take XML on stdin and produce pretty-printed XML on stdout."""
+
+import sys
+from xml.dom import minidom
+
+str = ""
+for s in sys.stdin.readlines():
+	str = str + s[:-1]			# Eat trailing \n
+
+doc = minidom.parseString(str)
+print doc.toprettyxml(indent = "  ")

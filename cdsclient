@@ -1,0 +1,67 @@
+#!/usr/bin/python
+#
+# Test harness for UPnP ContentDirectory:1 service.
+#
+
+# Licensed under the MIT license
+# http://opensource.org/licenses/mit-license.php
+
+# Copyright 2005, Tim Potter <tpot@samba.org>
+
+from twisted.web import client
+from twisted.internet import reactor
+from twisted.python import usage
+
+import sys, string, SOAPpy
+
+class UPnPSOAPProxy:
+	"""A proxy for making UPnP SOAP calls."""
+
+	def __init__(self, url):
+		self.url = url
+
+	def _cbGotResult(self, result):
+		return SOAPpy.parseSOAPRPC(result)
+
+	def callRemote(self, method, *args, **kwargs):
+
+		payload = SOAPpy.buildSOAP(args = args, kw = kwargs, method = method)
+		payload = string.replace(payload, '\n', '\r\n')
+		
+		action = \
+			   '"urn:schemas-upnp-org:service:ContentDirectory:1#%s"' % method
+		
+		page = client.getPage(self.url, postdata = payload,
+		    method = 'POST', headers = {'Content-Type': 'text/xml',
+		    'SOAPACTION': action})
+
+		return page.addCallback(self._cbGotResult)
+
+class Options(usage.Options):
+	pass
+
+def printResult(value):
+	print value
+	reactor.stop()
+
+def printError(error):
+	print 'error', error
+	reactor.stop()
+
+#proxy = UPnPSOAPProxy('http://192.168.126.128:5643/ContentDirectory/control')
+proxy = UPnPSOAPProxy('http://127.0.0.1:8080/ContentDirectory/control')
+#proxy = UPnPSOAPProxy('http://16.176.65.48:5643/ContentDirectory/control')
+
+#proxy.callRemote('GetSearchCapabilities').addCallbacks(printResult, printError)
+#proxy.callRemote('GetSortCapabilities').addCallbacks(printResult, printError)
+
+proxy.callRemote('Browse',
+		ObjectID = '0\\Music\\Genres\\Others\\chimes.wav',
+		#BrowseFlag = 'BrowseDirectChildren',
+		BrowseFlag = 'BrowseMetadata',
+		Filter = '*',
+		StartingIndex = 0,
+		RequestedCount = 700,
+		SortCriteria = None).addCallbacks(printResult, printError)
+
+reactor.run()
