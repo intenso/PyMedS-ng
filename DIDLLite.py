@@ -7,7 +7,7 @@
 __version__ = '$Change: 1227 $'
 # $Id: //depot/python/pymeds/pymeds-0.5/DIDLLite.py#1 $
 
-from elementtree.ElementTree import Element, SubElement, tostring, _ElementInterface
+from xml.etree.ElementTree import Element, SubElement, tostring, _ElementInterface
 
 class Resource(object):
 	"""An object representing a resource."""

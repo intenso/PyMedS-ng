@@ -27,7 +27,7 @@ reqname = 'requests'
 from twisted.python import log
 from twisted.web import resource, static
 
-from elementtree.ElementTree import Element, SubElement, tostring
+from xml.etree.ElementTree import Element, SubElement, tostring
 from upnp import UPnPPublisher, errorCode
 from DIDLLite import DIDLElement, Container, Movie, Resource, MusicTrack
 
